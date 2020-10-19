@@ -1,5 +1,5 @@
-import DemographicData from "./DemographicData.interface";
+import GeneralInformation from "./GeneralInformation.interface";
 
 export default interface FormResponse {
-  demographicData: DemographicData;
+  demographicData: GeneralInformation;
 }

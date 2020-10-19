@@ -2,7 +2,7 @@ import { css } from "emotion/macro";
 
 export default (): Record<string, string> => {
   return {
-    form: css`
+    container: css`
       flex: 1;
       flex-direction: column;
       justify-content: space-evenly;
@@ -17,6 +17,12 @@ export default (): Record<string, string> => {
     `,
     flexItem: css`
       width: 45%;
+    `,
+    content: css`
+      margin-bottom: 50px;
+    `,
+    text: css`
+      margin-top: 15px;
     `,
   };
 };

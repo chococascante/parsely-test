@@ -2,12 +2,14 @@ import { css } from "emotion/macro";
 
 export default (): Record<string, string> => {
   return {
-    form: css`
-      flex: 1;
+    container: css`
+      width: 100%;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+      overflow-y: scroll;
       padding: 25px;
+      max-height: 90%;
     `,
     flexRow: css`
       display: flex;
@@ -17,6 +19,21 @@ export default (): Record<string, string> => {
     `,
     flexItem: css`
       width: 45%;
+    `,
+    list: css`
+      width: 100%;
+      min-height: 50px;
+      background-color: #f5f5f5;
+    `,
+    flexColumn: css`
+      display: flex;
+      flex-direction: column;
+    `,
+    label: css`
+      font-weight: bold;
+    `,
+    entry: css`
+      margin: 5px 0;
     `,
   };
 };

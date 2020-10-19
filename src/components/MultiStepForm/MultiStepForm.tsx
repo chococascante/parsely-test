@@ -1,11 +1,40 @@
-import React, { useState } from 'react';
-import useStyles from './MultiStepForm.styles';
-import { Step, Stepper, StepLabel, Button, Typography, Paper } from '@material-ui/core'
-import GeneralInformationForm from 'components/GeneralInformationForm';
+import React from "react";
+import useStyles from "./MultiStepForm.styles";
+import { Step, Stepper, StepLabel, Paper } from "@material-ui/core";
+import GeneralInformationForm from "components/GeneralInformationForm";
+import State from "models/State.interface";
+import { useSelector } from "react-redux";
+import ButtonsContainer from "components/ButtonsContainer";
+import ConditionsForm from "components/ConditionsForm";
+import MedicalQuestionsForm from "components/MedicalQuestionsForm";
+import Summary from "components/Summary";
+import Terms from "components/Terms";
 
 const MultiStepForm = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
+  const activeStep = useSelector((state: State) => state.multiStep.activeStep);
+
+  const getCurrentStep = () => {
+    switch (activeStep) {
+      case 0:
+        return <GeneralInformationForm />;
+
+      case 1:
+        return <ConditionsForm />;
+
+      case 2:
+        return <MedicalQuestionsForm />;
+
+      case 3:
+        return <Summary />;
+
+      case 4:
+        return <Terms />;
+
+      default:
+        return <GeneralInformationForm />;
+    }
+  };
 
   return (
     <Paper className={classes.container}>
@@ -19,10 +48,18 @@ const MultiStepForm = () => {
         <Step>
           <StepLabel>Medical questions</StepLabel>
         </Step>
+        <Step>
+          <StepLabel>Summary</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Confirmation and Terms</StepLabel>
+        </Step>
       </Stepper>
-      <GeneralInformationForm />
-    </Paper>
-  )
-}
+      {getCurrentStep()}
 
-export default MultiStepForm
+      <ButtonsContainer />
+    </Paper>
+  );
+};
+
+export default MultiStepForm;

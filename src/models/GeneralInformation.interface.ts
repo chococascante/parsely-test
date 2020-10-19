@@ -1,13 +1,13 @@
-export default interface DemographicData {
+export default interface GeneralInformation {
   firstName: string;
-  LastName: string;
+  lastName: string;
   gender: string;
   dateOfBirth: string;
   email: string;
   phoneNumber: string;
   streetAddress: string;
   city: string;
-  State: string;
+  state: string;
   zipCode: string;
   maritalStatus: string;
 }
