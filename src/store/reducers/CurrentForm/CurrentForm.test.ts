@@ -2,6 +2,7 @@ import currentFormReducer from ".";
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 import {
+  setAgreeToTerms,
   setConditions,
   setGeneralInformation,
   setMedicalQuestions,
@@ -29,6 +30,7 @@ const defaultExpectedState: CurrentFormState = {
     zipCode: "",
     maritalStatus: "",
   },
+  isCurrentFormValid: false,
   conditions: [],
   medicalQuestions: defaultQuestions,
   agreeToTerms: false,
@@ -117,6 +119,17 @@ describe("(Reducer) CurrentForm", () => {
     expect(result).toEqual({
       ...defaultExpectedState,
       medicalQuestions: [...expectedQuestions],
+    });
+  });
+
+  it("should handle setAgreeToTerms", () => {
+    const result = currentFormReducer(
+      defaultExpectedState,
+      setAgreeToTerms(true)
+    );
+    expect(result).toEqual({
+      ...defaultExpectedState,
+      agreeToTerms: true,
     });
   });
 });

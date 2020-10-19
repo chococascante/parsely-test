@@ -1,10 +1,12 @@
 import {
+  setAgreeToTerms,
   setConditions,
   setGeneralInformation,
   setMedicalQuestions,
 } from "./index";
 import Condition from "models/Condition.interface";
 import {
+  SET_AGREE_TO_TERMS,
   SET_CONDITIONS,
   SET_GENERAL_INFORMATION,
   SET_MEDICAL_QUESTIONS,
@@ -87,4 +89,12 @@ describe("(Actions) Current Form", () => {
       payload: expectedInfo,
     });
   });
+
+  it('setAgreeToTerms action', () => {
+    const action = setAgreeToTerms(true);
+    expect(action).toEqual({
+      type: SET_AGREE_TO_TERMS,
+      payload: true
+    })
+  })
 });

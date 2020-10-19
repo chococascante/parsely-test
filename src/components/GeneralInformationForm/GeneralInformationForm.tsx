@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Select,
@@ -8,7 +8,10 @@ import {
 } from "@material-ui/core";
 import useStyles from "./GeneralInformationForm.styles";
 import { useDispatch, useSelector } from "react-redux";
-import { setGeneralInformation } from "store/actions/CurrentForm";
+import {
+  setGeneralInformation,
+  setIsCurrentFormStepValid,
+} from "store/actions/CurrentForm";
 import State from "models/State.interface";
 
 const GeneralInformationForm = () => {
@@ -46,6 +49,29 @@ const GeneralInformationForm = () => {
     initialGeneralInformation.maritalStatus
   );
 
+  const validateEmail = () => {
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(String(email).toLowerCase());
+  };
+
+  const validateForm = () => {
+    if (
+      firstName !== "" &&
+      lastName !== "" &&
+      gender !== "" &&
+      dateOfBirth !== "" &&
+      validateEmail() &&
+      phoneNumber !== "" &&
+      streetAddress !== "" &&
+      city !== "" &&
+      state !== "" &&
+      zipCode !== "" &&
+      maritalStatus !== ""
+    ) {
+      dispatch(setIsCurrentFormStepValid(true));
+    }
+  };
+
   const handleOnBlur = () => {
     const generalInformation = {
       firstName,
@@ -61,7 +87,12 @@ const GeneralInformationForm = () => {
       maritalStatus,
     };
     dispatch(setGeneralInformation(generalInformation));
+    validateForm();
   };
+
+  useEffect(() => {
+    dispatch(setIsCurrentFormStepValid(false));
+  }, []);
 
   return (
     <form className={classes.form}>

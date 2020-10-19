@@ -11,6 +11,9 @@ const ButtonsContainer = () => {
   const activeStep = useSelector((state: State) => state.multiStep.activeStep);
   const currentForm = useSelector((state: State) => state.currentForm);
   const agree = useSelector((state: State) => state.currentForm.agreeToTerms);
+  const isCurrentFormValid = useSelector(
+    (state: State) => state.currentForm.isCurrentFormValid
+  );
 
   const isLastStep = activeStep === 4;
 
@@ -37,6 +40,7 @@ const ButtonsContainer = () => {
         Back
       </Button>
       <Button
+        disabled={isLastStep ? !agree : !isCurrentFormValid}
         id="next-button"
         onClick={handleNextButtonClick}
         variant="contained"

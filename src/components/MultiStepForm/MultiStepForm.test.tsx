@@ -33,6 +33,8 @@ const initialState: State = {
       zipCode: "",
       maritalStatus: "",
     },
+    isCurrentFormValid: false,
+    agreeToTerms: false,
     conditions: [],
     medicalQuestions: [],
   },

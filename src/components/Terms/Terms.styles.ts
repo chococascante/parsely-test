@@ -23,6 +23,7 @@ export default (): Record<string, string> => {
     `,
     text: css`
       margin-top: 15px;
+      text-align: justify;
     `,
   };
 };

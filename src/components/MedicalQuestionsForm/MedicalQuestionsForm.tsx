@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Paper,
+  Divider,
 } from "@material-ui/core";
 import MedicalQuestion from "models/MedicalQuestion.interface";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,36 +61,39 @@ const MedicalQuestionsForm = () => {
       <List className={classes.list}>
         {answers.map((question: MedicalQuestion) => {
           return (
-            <ListItem
-              className={classes.group}
-              key={question.question}
-              onBlur={handleOnBlur}
-            >
-              <FormControlLabel
-                value="start"
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={question.answer}
-                    onChange={(e) => handleSwitchChange(e, question)}
-                    inputProps={{ "aria-label": "primary checkbox" }}
-                  />
-                }
-                label={question.question}
-                labelPlacement="start"
-              />
-
-              {question.answer && (
-                <TextField
-                  className={classes.flexRow}
-                  label={question.followUp}
-                  variant="outlined"
-                  id={`${question}-comment`}
-                  value={question.comment}
-                  onChange={(event) => handleCommentChange(event, question)}
+            <>
+              <Divider />
+              <ListItem
+                className={classes.group}
+                key={question.question}
+                onBlur={handleOnBlur}
+              >
+                <FormControlLabel
+                  value="start"
+                  control={
+                    <Checkbox
+                      color="primary"
+                      checked={question.answer}
+                      onChange={(e) => handleSwitchChange(e, question)}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                    />
+                  }
+                  label={question.question}
+                  labelPlacement="start"
                 />
-              )}
-            </ListItem>
+
+                {question.answer && (
+                  <TextField
+                    className={classes.flexRow}
+                    label={question.followUp}
+                    variant="outlined"
+                    id={`${question}-comment`}
+                    value={question.comment}
+                    onChange={(event) => handleCommentChange(event, question)}
+                  />
+                )}
+              </ListItem>
+            </>
           );
         })}
       </List>

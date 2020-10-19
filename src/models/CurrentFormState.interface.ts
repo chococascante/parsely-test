@@ -7,4 +7,5 @@ export default interface CurrentFormState {
   conditions: Condition[];
   medicalQuestions: MedicalQuestion[];
   agreeToTerms: boolean;
+  isCurrentFormValid: boolean;
 }

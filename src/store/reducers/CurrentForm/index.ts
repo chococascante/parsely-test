@@ -8,6 +8,7 @@ import {
   SET_GENERAL_INFORMATION,
   SET_MEDICAL_QUESTIONS,
   SET_AGREE_TO_TERMS,
+  SET_IS_CURRENT_STEP_VALID,
 } from "store/actions/actionTypes";
 
 import medicalQuestions from "mocks/medicalQuestions.json";
@@ -29,6 +30,7 @@ const initialState: CurrentFormState = {
     zipCode: "",
     maritalStatus: "",
   },
+  isCurrentFormValid: false,
   conditions: [],
   medicalQuestions: defaultQuestions,
   agreeToTerms: false,
@@ -56,6 +58,11 @@ export default (
         agreeToTerms: payload as boolean,
       };
 
+    case SET_IS_CURRENT_STEP_VALID:
+      return {
+        ...state,
+        isCurrentFormValid: payload as boolean,
+      };
     default:
       return state;
   }

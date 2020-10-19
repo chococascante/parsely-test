@@ -12,11 +12,11 @@ export default (): Record<string, string> => {
     flexRow: css`
       display: flex;
       width: 100%;
-      justify-content: space-evenly;
+      justify-content: space-between;
       margin: 15px 0;
     `,
     flexItem: css`
-      width: 45%;
+      width: 48%;
     `,
   };
 };

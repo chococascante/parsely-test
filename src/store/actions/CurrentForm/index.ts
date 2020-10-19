@@ -6,6 +6,7 @@ import {
   SET_CONDITIONS,
   SET_GENERAL_INFORMATION,
   SET_MEDICAL_QUESTIONS,
+  SET_IS_CURRENT_STEP_VALID,
 } from "../actionTypes";
 
 import axios from "axios";
@@ -31,5 +32,10 @@ export const setMedicalQuestions = (payload: MedicalQuestion[]): Action => ({
 
 export const setAgreeToTerms = (payload: boolean): Action => ({
   type: SET_AGREE_TO_TERMS,
+  payload,
+});
+
+export const setIsCurrentFormStepValid = (payload: boolean): Action => ({
+  type: SET_IS_CURRENT_STEP_VALID,
   payload,
 });

@@ -24,10 +24,6 @@ const ConditionsForm = () => {
     (state: State) => state.currentForm.conditions
   );
 
-  const conditionTypes = [
-    ...new Set(conditionsdata.map((condition) => condition.type)),
-  ];
-
   const handleConditionChange = (
     event: React.ChangeEvent<{}>,
     value: Condition | null
